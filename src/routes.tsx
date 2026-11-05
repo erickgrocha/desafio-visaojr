@@ -3,6 +3,7 @@ import { HeaderLayout } from "./layouts/HeaderLayout";
 import { Home } from "./pages/Home";
 import { Sobre } from "./pages/Sobre";
 import { Jogos } from "./pages/Jogos";
+import { Consoles } from "./pages/Consoles";
 
 export const routes: RouteObject[] = [
     {
@@ -19,6 +20,10 @@ export const routes: RouteObject[] = [
             {
                 path: "/jogos",
                 element: <Jogos />
+            },
+            {
+                path: "/consoles",
+                element: <Consoles />
             }
         ]
     }
