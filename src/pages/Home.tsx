@@ -1,4 +1,5 @@
 import { Banner } from "../components/Banner/Banner";
+import { JogosDestaque } from "../components/JogosDestaque";
 import { SavePoint } from "../components/SavePoint";
 import { Depoimentos } from "../components/depoimentos";
 import { BannerCTA } from "../components/BannerCTA";
@@ -10,6 +11,8 @@ export function Home() {
             <div>
                 <Banner />
             </div>
+
+            <JogosDestaque />
 
             <SavePoint />
 
