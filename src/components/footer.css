@@ -131,7 +131,7 @@
 .footer-textarea {
     height: auto;
     padding: 10px 12px;
-    resize: vertical;
+    resize: none;
 }
 
 .footer .footer-send,

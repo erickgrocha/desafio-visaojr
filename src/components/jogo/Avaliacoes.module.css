@@ -140,7 +140,7 @@
 .area {
     height: auto;
     padding: 10px 12px;
-    resize: vertical;
+    resize: none;
 }
 
 .submit {
