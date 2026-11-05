@@ -1,4 +1,4 @@
-import { Button } from "../Button/Button";
+import { Link } from "react-router-dom";
 import { formatPrice, homeConsoles } from "./homeData";
 import shared from "./shared.module.css";
 import styles from "./Consoles.module.css";
@@ -15,7 +15,7 @@ export function Consoles() {
                 </div>
                 <div className={styles.grid}>
                     {homeConsoles.map((c) => (
-                        <article key={c.id} className={`${shared.box} ${styles.card}`}>
+                        <Link key={c.id} to={`/consoles/${c.slug}`} className={`${shared.box} ${shared.lift} ${styles.card}`}>
                             <div className={styles.cover}>
                                 <img className={shared.coverImg} src={c.imagem} alt={c.nome} loading="lazy" />
                             </div>
@@ -25,16 +25,8 @@ export function Consoles() {
                                     {c.tipo} · {c.geracao}
                                 </span>
                                 <span className={styles.price}>{formatPrice(c.valor)}</span>
-                                <div className={styles.actions}>
-                                    <Button variant="primary" to={`/consoles/${c.slug}`} className={styles.buy}>
-                                        Comprar
-                                    </Button>
-                                    <Button variant="secondary" to={`/consoles/${c.slug}#jogos`} className={styles.see}>
-                                        Ver jogos<span className={styles.caret}> ▸</span>
-                                    </Button>
-                                </div>
                             </div>
-                        </article>
+                        </Link>
                     ))}
                 </div>
             </div>
