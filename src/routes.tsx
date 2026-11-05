@@ -4,6 +4,10 @@ import { Home } from "./pages/Home";
 import { Sobre } from "./pages/Sobre";
 import { Jogos } from "./pages/Jogos";
 import { Consoles } from "./pages/Consoles";
+import { JogoDetalhe } from "./pages/JogoDetalhe";
+import { ConsoleDetalhe } from "./pages/ConsoleDetalhe";
+import { Diretores } from "./pages/Diretores";
+import { DiretorDetalhe } from "./pages/DiretorDetalhe";
 
 export const routes: RouteObject[] = [
     {
@@ -22,8 +26,24 @@ export const routes: RouteObject[] = [
                 element: <Jogos />
             },
             {
+                path: "/jogos/:slug",
+                element: <JogoDetalhe />
+            },
+            {
                 path: "/consoles",
                 element: <Consoles />
+            },
+            {
+                path: "/consoles/:slug",
+                element: <ConsoleDetalhe />
+            },
+            {
+                path: "/diretores",
+                element: <Diretores />
+            },
+            {
+                path: "/diretores/:slug",
+                element: <DiretorDetalhe />
             }
         ]
     }
