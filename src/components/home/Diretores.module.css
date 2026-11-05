@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+    width: 100%;
 }
 
 .titleGap {
@@ -22,28 +23,24 @@
     display: none;
 }
 
-.viewportWrap {
-    margin-top: 32px;
+.carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
 .scroller {
-    display: flex;
-    gap: 24px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+    --carousel-gap: 24px;
     padding: 4px 12px 16px 4px;
-    margin: -4px -12px -16px -4px;
-}
-
-.scroller::-webkit-scrollbar {
-    display: none;
+    margin: 0 -12px 0 -4px;
+    scroll-padding-left: 4px;
 }
 
 .card {
-    flex: none;
-    width: 260px;
-    scroll-snap-align: start;
+    height: 100%;
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -159,21 +156,21 @@
         display: none;
     }
 
-    .viewportWrap {
-        margin-top: 16px;
-        padding-left: 0;
-        padding-right: 0;
+    .carousel {
+        gap: 16px;
+        padding: 0;
+    }
+
+    .inner {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     .scroller {
-        gap: 12px;
+        --carousel-gap: 12px;
         padding: 4px 16px 14px;
         margin: 0;
         scroll-padding-left: 16px;
-    }
-
-    .card {
-        width: 150px;
     }
 
     .cover {
