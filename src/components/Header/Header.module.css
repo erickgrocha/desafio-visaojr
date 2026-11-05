@@ -83,10 +83,6 @@
     padding: 0;
 }
 
-.actions .cart {
-    padding: 0 14px;
-}
-
 /* Mobile: barra de 68px com logo + ícones, menu em painel, busca em faixa */
 .mobileOnly {
     display: none;
@@ -178,9 +174,5 @@
 
     .actions .iconBtn {
         width: 44px;
-    }
-
-    .actions .cart {
-        padding: 0 10px;
     }
 }

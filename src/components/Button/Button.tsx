@@ -25,7 +25,7 @@ type ButtonAsAnchor = CommonProps &
 export type ButtonProps = ButtonAsButton | ButtonAsLink | ButtonAsAnchor;
 
 /**
- * primary   → vermelho  (.b-red: carrinho, Ver ofertas, Comprar)
+ * primary   → vermelho  (.b-red: Ver ofertas, Comprar)
  * secondary → superfície (.b-ghost: Falar no WhatsApp, menu, filtros)
  * accent    → amarelo   (.b-yel: tema, Enviar para o Mayk)
  * info      → azul      (.b-blue: Ver jogos)

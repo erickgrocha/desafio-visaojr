@@ -4,10 +4,6 @@ import { useTheme } from "../../hooks/useTheme";
 import { Button } from "../Button/Button";
 import styles from "./Header.module.css";
 
-type HeaderProps = {
-    cartCount?: number;
-};
-
 type NavItem = { label: string; to: string; end?: boolean };
 
 // Home: âncoras das seções. Telas internas: rotas, com "Início" na frente.
@@ -55,16 +51,6 @@ function MoonIcon() {
     );
 }
 
-function CartIcon() {
-    return (
-        <PixelIcon>
-            <path d="M0 1h2v1h1v4h6v-4h-6v-1h7v6h-8v-5h-2z" fill="#FFFFFF" />
-            <rect x="3" y="8" width="2" height="2" fill="#FFFFFF" />
-            <rect x="7" y="8" width="2" height="2" fill="#FFFFFF" />
-        </PixelIcon>
-    );
-}
-
 function MenuIcon({ open }: { open: boolean }) {
     return (
         <PixelIcon>
@@ -98,7 +84,7 @@ function SearchField() {
     );
 }
 
-export function Header({ cartCount = 0 }: HeaderProps) {
+export function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const closeMenu = () => setMenuOpen(false);
     const { isDark, toggleTheme } = useTheme();
@@ -135,10 +121,6 @@ export function Header({ cartCount = 0 }: HeaderProps) {
                             onClick={toggleTheme}
                         >
                             {isDark ? <SunIcon /> : <MoonIcon />}
-                        </Button>
-                        <Button variant="primary" className={styles.cart} aria-label={`Carrinho, ${cartCount} itens`}>
-                            <CartIcon />
-                            <span>{cartCount}</span>
                         </Button>
                         <div className={styles.mobileOnly}>
                             <Button
