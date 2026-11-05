@@ -12,63 +12,63 @@ export const directors = {
         slug: "hidetaka-miyazaki",
         name: "Hidetaka Miyazaki",
         // Wikimedia Commons, CC BY-SA 4.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Hidetaka_Miyazaki,_The_Game_Awards_2022_(cropped).png?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Hidetaka_Miyazaki,_The_Game_Awards_2022_(cropped).png?width=500",
         studio: "fromsoftware"
     },
     "shigeru-miyamoto": {
         slug: "shigeru-miyamoto",
         name: "Shigeru Miyamoto",
         // Wikimedia Commons, CC BY 4.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Miyamoto_Shigeru_2026.jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Miyamoto_Shigeru_2026.jpg?width=500",
         studio: "nintendo-epd"
     },
     "hideo-kojima": {
         slug: "hideo-kojima",
         name: "Hideo Kojima",
         // Wikimedia Commons, CC BY-SA 4.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Hideo_Kojima_2025_SXSW_(cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Hideo_Kojima_2025_SXSW_(cropped).jpg?width=500",
         studio: "kojima-productions"
     },
     "yuji-naka": {
         slug: "yuji-naka",
         name: "Yuji Naka",
         // Wikimedia Commons, CC BY-SA 3.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Yuji_Naka'_-_Magic_-_Monaco_-_2015-03-21-_P1030036_(cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Yuji_Naka'_-_Magic_-_Monaco_-_2015-03-21-_P1030036_(cropped).jpg?width=500",
         studio: "sonic-team"
     },
     "neil-druckmann": {
         slug: "neil-druckmann",
         name: "Neil Druckmann",
         // Wikimedia Commons, CC BY-SA 4.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Neil_Druckmann,_co-director,_at_SXSW_2025_01_(cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Neil_Druckmann,_co-director,_at_SXSW_2025_01_(cropped).jpg?width=500",
         studio: "naughty-dog"
     },
     "cory-barlog": {
         slug: "cory-barlog",
         name: "Cory Barlog",
         // Wikimedia Commons, Public domain
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Cory_Barlog,_Gamelab_2019_(cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Cory_Barlog,_Gamelab_2019_(cropped).jpg?width=500",
         studio: "santa-monica-studio"
     },
     "todd-howard": {
         slug: "todd-howard",
         name: "Todd Howard",
         // Wikimedia Commons, CC BY-SA 4.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Todd_Howard,_SXSW_2024_(2).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Todd_Howard,_SXSW_2024_(2).jpg?width=500",
         studio: "bethesda-game-studios"
     },
     "dan-houser": {
         slug: "dan-houser",
         name: "Dan Houser",
         // Wikimedia Commons, CC BY-SA 4.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Dan_Houser_at_Rockstar_Games.png?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Dan_Houser_at_Rockstar_Games.png?width=500",
         studio: "rockstar-games"
     },
     "hidemaro-fujibayashi": {
         slug: "hidemaro-fujibayashi",
         name: "Hidemaro Fujibayashi",
         // Wikimedia Commons, CC BY 2.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Hidemaro_Fujibayashi_-_GDC_2017_(cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Hidemaro_Fujibayashi_-_GDC_2017_(cropped).jpg?width=500",
         studio: "nintendo-epd"
     },
     "kosuke-yabuki": {
@@ -87,14 +87,14 @@ export const directors = {
         slug: "masahiro-sakurai",
         name: "Masahiro Sakurai",
         // Wikimedia Commons, CC BY 3.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Masahiro_Sakurai_2021.jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Masahiro_Sakurai_2021.jpg?width=500",
         studio: "sora-ltd"
     },
     "takashi-iizuka": {
         slug: "takashi-iizuka",
         name: "Takashi Iizuka",
         // Wikimedia Commons, CC BY 3.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/A_signing_with_Mr_Takashi_Iizuka_(Cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/A_signing_with_Mr_Takashi_Iizuka_(Cropped).jpg?width=500",
         studio: "sonic-team"
     },
     "guillaume-broche": {
@@ -137,14 +137,14 @@ export const directors = {
         slug: "yoko-taro",
         name: "Yoko Taro",
         // Wikimedia Commons, CC BY 2.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/GDCA_-_Yoko_Taro_(cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/GDCA_-_Yoko_Taro_(cropped).jpg?width=500",
         studio: "platinumgames"
     },
     "swen-vincke": {
         slug: "swen-vincke",
         name: "Swen Vincke",
         // Wikimedia Commons, CC BY 2.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Game_Developers_Choice_Awards_2024_-_Baldur's_Gate_3_-_Best_Narrative_-_5_-_Swen_Vincke_(cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Game_Developers_Choice_Awards_2024_-_Baldur's_Gate_3_-_Best_Narrative_-_5_-_Swen_Vincke_(cropped).jpg?width=500",
         studio: "larian-studios"
     },
     "katsura-hashino": {
@@ -163,14 +163,14 @@ export const directors = {
         slug: "greg-kasavin",
         name: "Greg Kasavin",
         // Wikimedia Commons, CC BY-SA 3.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Greg_Kasavin_at_IndieCade_2013.png?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Greg_Kasavin_at_IndieCade_2013.png?width=500",
         studio: "supergiant-games"
     },
     "kazunori-yamauchi": {
         slug: "kazunori-yamauchi",
         name: "Kazunori Yamauchi",
         // Wikimedia Commons, CC BY-SA 4.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Festival_automobile_international_2015_-_Kazunori_Yamauchi_-_006.jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Festival_automobile_international_2015_-_Kazunori_Yamauchi_-_006.jpg?width=500",
         studio: "polyphony-digital"
     },
     "mathijs-de-jonge": {
@@ -190,7 +190,7 @@ export const directors = {
         slug: "sam-lake",
         name: "Sam Lake",
         // Wikimedia Commons, CC BY 4.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Sam_Lake-MichaelF%C3%B6rtsch.jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Sam_Lake-MichaelF%C3%B6rtsch.jpg?width=500",
         studio: "remedy-entertainment"
     },
     "stig-asmussen": {
@@ -215,14 +215,14 @@ export const directors = {
         slug: "michel-ancel",
         name: "Michel Ancel",
         // Wikimedia Commons, CC BY-SA 4.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Michel_Ancel.jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Michel_Ancel.jpg?width=500",
         studio: "ubisoft"
     },
     "jens-bergensten": {
         slug: "jens-bergensten",
         name: "Jens Bergensten",
         // Wikimedia Commons, CC BY-SA 2.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Jeb_at_PAX_Prime_2012_(cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Jeb_at_PAX_Prime_2012_(cropped).jpg?width=500",
         studio: "mojang-studios"
     },
     "feng-ji": {
@@ -242,21 +242,21 @@ export const directors = {
         slug: "eric-barone",
         name: "Eric Barone",
         // Wikimedia Commons, CC BY 2.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Hackfort_2019_-_Conversations_with_Eric_Barone_09_(cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Hackfort_2019_-_Conversations_with_Eric_Barone_09_(cropped).jpg?width=500",
         studio: "concernedape"
     },
     "ari-gibson": {
         slug: "ari-gibson",
         name: "Ari Gibson",
         // Wikimedia Commons, CC0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Ari_Gibson_2024_3_(brightened).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Ari_Gibson_2024_3_(brightened).jpg?width=500",
         studio: "team-cherry"
     },
     "adam-badowski": {
         slug: "adam-badowski",
         name: "Adam Badowski",
         // Wikimedia Commons, CC BY-SA 4.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Adam_Badowski_(cropped_1).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Adam_Badowski_(cropped_1).jpg?width=500",
         studio: "cd-projekt-red"
     },
     "konrad-tomaszkiewicz": {
@@ -269,7 +269,7 @@ export const directors = {
         slug: "naoki-hamaguchi",
         name: "Naoki Hamaguchi",
         // Wikimedia Commons, CC BY 3.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Naoki_Hamaguchi,_2024_(cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Naoki_Hamaguchi,_2024_(cropped).jpg?width=500",
         studio: "square-enix"
     },
     "hiroshi-takai": {
@@ -282,14 +282,14 @@ export const directors = {
         slug: "yuji-horii",
         name: "Yuji Horii",
         // Wikimedia Commons, CC BY-SA 2.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Yuji_Horii_(2).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Yuji_Horii_(2).jpg?width=500",
         studio: "square-enix"
     },
     "fumito-ueda": {
         slug: "fumito-ueda",
         name: "Fumito Ueda",
         // Wikimedia Commons, CC BY-SA 4.0
-        image: "https://commons.wikimedia.org/wiki/Special:FilePath/FumitoUedaE32016_(cropped).jpg?width=600",
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/FumitoUedaE32016_(cropped).jpg?width=500",
         studio: "gendesign"
     },
     "mike-brown": {
