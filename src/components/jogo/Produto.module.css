@@ -27,6 +27,61 @@
     aspect-ratio: 16 / 10;
 }
 
+.stageWide {
+    aspect-ratio: 16 / 9;
+}
+
+.stageFrame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.bigPlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 12px 16px;
+    background: var(--surface);
+    color: var(--ink);
+    border: 4px solid var(--line);
+    box-shadow: 6px 6px 0 var(--line);
+    cursor: pointer;
+}
+
+.bigPlay:hover {
+    background: var(--yellow);
+    color: var(--navy);
+}
+
+.bigIcon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    background: var(--red);
+    border: 4px solid var(--line);
+}
+
+.bigIcon svg {
+    width: 32px;
+    height: 32px;
+    color: var(--surface);
+}
+
+.bigText {
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
 .stageImg {
     display: block;
     width: 100%;
@@ -65,6 +120,29 @@
     aspect-ratio: 16 / 10;
     overflow: hidden;
     cursor: pointer;
+}
+
+.thumb {
+    position: relative;
+}
+
+.playBadge {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    transform: translate(-50%, -50%);
+    background: var(--red);
+    border: 3px solid var(--line);
+}
+
+.playBadge svg {
+    width: 16px;
+    height: 16px;
+    color: var(--surface);
 }
 
 .thumb img {
