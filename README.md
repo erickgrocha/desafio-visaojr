@@ -6,7 +6,6 @@ Loja de games com catálogo de jogos, consoles e ofertas por plataforma, em visu
 **🔗 Demo:** https://desafio-visaojr.vercel.app  
 **📦 Repositório original:** https://github.com/rTanure/desafio-visaojr
 
-![Home do Mayk Games](docs/home.png)
 
 > Fork do repositório do grupo, mantido como registro da minha participação.
 
