@@ -98,8 +98,7 @@ export function Header() {
             <header className={styles.header}>
                 <div className={styles.wrap}>
                     <Link to="/" className={styles.logo} onClick={closeMenu}>
-                        <img className={styles.logoImg} src="/img/icons/Logo.png" alt="" />
-                        <span className={styles.logoText}>MAYK<br />GAMES</span>
+                        <img className={styles.logoImg} src="/img/logo-mayk-games.png" alt="Mayk Games" width="640" height="377" />
                     </Link>
 
                     <nav aria-label="Principal" className={`${styles.nav} ${styles.desktopOnly}`}>

@@ -29,15 +29,9 @@
 }
 
 .logoImg {
-    width: 56px;
-    height: 56px;
-    image-rendering: pixelated;
-}
-
-.logoText {
-    font-family: var(--font-pixel);
-    font-size: 14px;
-    line-height: 1.5;
+    display: block;
+    width: auto;
+    height: 52px;
 }
 
 .nav {
@@ -153,12 +147,7 @@
     }
 
     .logoImg {
-        width: 44px;
         height: 44px;
-    }
-
-    .logoText {
-        font-size: 11px;
     }
 
     .actions {
