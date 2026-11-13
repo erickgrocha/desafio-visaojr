@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "../Button/Button";
+import { Carousel } from "../Carousel/Carousel";
 import { ArrowLeft, ArrowRight, ConsoleArt, type ConsoleKind } from "./icons";
 import { bestOfferOf, consoleByName, formatPrice } from "./homeData";
 import shared from "./shared.module.css";
@@ -23,10 +24,8 @@ type Slide = {
     cover?: string;
     old?: string;
     price?: string;
-    buy: string;
-    buyShort: string;
-    more: string;
-    to: string;
+    /** página de detalhe do produto; sem valor, o card não é link */
+    href?: string;
 };
 
 function buildSlides(): Slide[] {
@@ -48,10 +47,7 @@ function buildSlides(): Slide[] {
             name: xbox?.nome ?? "Xbox Series X",
             desc: xbox ? `${xbox.tipo} · ${xbox.geracao}` : undefined,
             price: xbox ? formatPrice(xbox.valor) : undefined,
-            buy: "Comprar console",
-            buyShort: "Comprar",
-            more: "Ver jogos",
-            to: "/consoles",
+            href: xbox?.slug ? `/consoles/${xbox.slug}` : undefined,
         },
         {
             eyebrow: "NOVA GERAÇÃO",
@@ -66,10 +62,7 @@ function buildSlides(): Slide[] {
             name: ps5?.nome ?? "PlayStation 5",
             desc: ps5 ? `${ps5.tipo} · ${ps5.geracao}` : undefined,
             price: ps5 ? formatPrice(ps5.valor) : undefined,
-            buy: "Comprar console",
-            buyShort: "Comprar",
-            more: "Ver jogos",
-            to: "/consoles",
+            href: ps5?.slug ? `/consoles/${ps5.slug}` : undefined,
         },
         {
             eyebrow: "MODO TURBO",
@@ -84,10 +77,7 @@ function buildSlides(): Slide[] {
             name: "PC Gamer Pixel",
             desc: "RTX · 32 GB RAM · 1 TB NVMe",
             // sem equivalente em src/data: sem preço
-            buy: "Comprar PC",
-            buyShort: "Comprar",
-            more: "Ver jogos",
-            to: "/consoles",
+            // sem equivalente em src/data: sem link
         },
         {
             eyebrow: "FASE BÔNUS",
@@ -103,10 +93,7 @@ function buildSlides(): Slide[] {
             cover: elden?.cover,
             old: elden?.oldPrice ? formatPrice(elden.oldPrice) : undefined,
             price: elden ? formatPrice(elden.price) : undefined,
-            buy: "Comprar jogo",
-            buyShort: "Comprar",
-            more: "Ver detalhes",
-            to: "/jogos",
+            href: elden ? `/jogos/${elden.game.slug}` : undefined,
         },
     ];
 }
@@ -134,46 +121,78 @@ function Cloud({ className }: { className: string }) {
     );
 }
 
-export function Hero() {
-    const [index, setIndex] = useState(0);
-    const [paused, setPaused] = useState(false);
-
-    useEffect(() => {
-        if (paused) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        const timer = setInterval(() => setIndex((i) => (i + 1) % slides.length), AUTOPLAY_MS);
-        return () => clearInterval(timer);
-    }, [paused]);
-
-    const go = (i: number) => setIndex((i + slides.length) % slides.length);
-
+function CardContent({ s }: { s: Slide }) {
     return (
-        <section
-            className={styles.hero}
-            aria-roledescription="carrossel"
-            aria-label="Destaques da loja"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-            onFocus={() => setPaused(true)}
-            onBlur={() => setPaused(false)}
-        >
+        <>
+            <div className={`${styles.cardCover} ${s.coverClass}`}>
+                {s.art === "game" ? (
+                    s.cover ? (
+                        <img className={shared.coverImg} src={s.cover} alt="" />
+                    ) : null
+                ) : (
+                    <ConsoleArt kind={s.art} size={220} label={s.artLabel} />
+                )}
+            </div>
+            <div className={styles.cardBody}>
+                <div className={styles.cardTop}>
+                    <div>
+                        <h3 className={styles.cardName}>{s.name}</h3>
+                        {s.desc && <p className={styles.cardDesc}>{s.desc}</p>}
+                    </div>
+                    {s.price && (
+                        <div className={styles.cardPrice}>
+                            {s.old && <div className={shared.old}>{s.old}</div>}
+                            <div className={styles.priceNow}>{s.price}</div>
+                        </div>
+                    )}
+                </div>
+            </div>
+            <span className={styles.tag}>{s.tag}</span>
+        </>
+    );
+}
+
+export function Hero() {
+    return (
+        <section className={styles.hero}>
             <Cloud className={styles.cloudA} />
             <Cloud className={styles.cloudB} />
 
-            <div className={styles.viewport}>
-                <div className={styles.track} style={{ transform: `translateX(${-index * 100}%)` }}>
-                    {slides.map((s, i) => {
-                        const active = i === index;
-                        const Heading = i === 0 ? "h1" : "h2";
-                        return (
-                            <div
-                                key={s.title}
-                                role="group"
-                                aria-roledescription="slide"
-                                aria-label={`${i + 1} de ${slides.length}`}
-                                aria-hidden={!active}
-                                className={`${styles.slide} ${active ? styles.slideOn : styles.slideOff}`}
-                            >
+            <Carousel
+                ariaLabel="Destaques da loja"
+                itemsVisible={1}
+                autoPlay={AUTOPLAY_MS}
+                controls="none"
+                renderAfter={({ index, prev, next, goTo }) => (
+                    <div className={`${shared.wrap} ${styles.controls}`}>
+                        <Button variant="secondary" aria-label="Destaque anterior" onClick={prev} className={shared.arrowBtn}>
+                            <ArrowLeft />
+                        </Button>
+                        <div className={styles.dots}>
+                            {slides.map((s, i) => (
+                                <button
+                                    key={s.title}
+                                    type="button"
+                                    aria-label={`Ver destaque ${i + 1}: ${s.name}`}
+                                    aria-current={i === index}
+                                    onClick={() => goTo(i)}
+                                    className={`${styles.dot} ${i === index ? styles.dotOn : ""}`}
+                                />
+                            ))}
+                        </div>
+                        <span className={styles.count} aria-live="off">
+                            {index + 1}/{slides.length}
+                        </span>
+                        <Button variant="accent" aria-label="Próximo destaque" onClick={next} className={shared.arrowBtn}>
+                            <ArrowRight />
+                        </Button>
+                    </div>
+                )}
+            >
+                {slides.map((s, i) => {
+                    const Heading = i === 0 ? "h1" : "h2";
+                    return (
+                        <div key={s.title}>
                                 <div className={`${shared.wrap} ${styles.grid}`}>
                                     <div className={styles.copy}>
                                         <span className={styles.eyebrow}>
@@ -208,71 +227,20 @@ export function Hero() {
                                         </div>
                                     </div>
 
-                                    <article className={`${shared.box} ${styles.card}`}>
-                                        <div className={`${styles.cardCover} ${s.coverClass}`}>
-                                            {s.art === "game" ? (
-                                                s.cover ? (
-                                                    <img className={shared.coverImg} src={s.cover} alt="" />
-                                                ) : null
-                                            ) : (
-                                                <ConsoleArt kind={s.art} size={220} label={s.artLabel} />
-                                            )}
-                                        </div>
-                                        <div className={styles.cardBody}>
-                                            <div className={styles.cardTop}>
-                                                <div>
-                                                    <h3 className={styles.cardName}>{s.name}</h3>
-                                                    {s.desc && <p className={styles.cardDesc}>{s.desc}</p>}
-                                                </div>
-                                                {s.price && (
-                                                    <div className={styles.cardPrice}>
-                                                        {s.old && <div className={shared.old}>{s.old}</div>}
-                                                        <div className={styles.priceNow}>{s.price}</div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                            <div className={styles.cardBtns}>
-                                                <Button variant="primary" to={s.to} className={styles.cardBtn}>
-                                                    <span className={styles.long}>{s.buy}</span>
-                                                    <span className={styles.short}>{s.buyShort}</span>
-                                                </Button>
-                                                <Button variant="info" to={s.to} className={styles.cardBtn}>
-                                                    {s.more}
-                                                </Button>
-                                            </div>
-                                        </div>
-                                        <span className={styles.tag}>{s.tag}</span>
-                                    </article>
+                                    {s.href ? (
+                                        <Link to={s.href} aria-label={s.name} className={`${shared.box} ${shared.lift} ${styles.card} ${styles.cardLink}`}>
+                                            <CardContent s={s} />
+                                        </Link>
+                                    ) : (
+                                        <article className={`${shared.box} ${styles.card}`}>
+                                            <CardContent s={s} />
+                                        </article>
+                                    )}
                                 </div>
                             </div>
                         );
                     })}
-                </div>
-            </div>
-
-            <div className={`${shared.wrap} ${styles.controls}`}>
-                <Button variant="secondary" aria-label="Destaque anterior" onClick={() => go(index - 1)} className={shared.arrowBtn}>
-                    <ArrowLeft />
-                </Button>
-                <div className={styles.dots}>
-                    {slides.map((s, i) => (
-                        <button
-                            key={s.title}
-                            type="button"
-                            aria-label={`Ver destaque ${i + 1}: ${s.name}`}
-                            aria-current={i === index}
-                            onClick={() => go(i)}
-                            className={`${styles.dot} ${i === index ? styles.dotOn : ""}`}
-                        />
-                    ))}
-                </div>
-                <span className={styles.count} aria-live="polite">
-                    {index + 1}/{slides.length}
-                </span>
-                <Button variant="accent" aria-label="Próximo destaque" onClick={() => go(index + 1)} className={shared.arrowBtn}>
-                    <ArrowRight />
-                </Button>
-            </div>
+            </Carousel>
 
             <div className={styles.grass} />
             <div className={styles.bricks} />

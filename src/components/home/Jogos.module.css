@@ -69,14 +69,9 @@
     color: var(--red);
 }
 
-.cart {
-    font-family: var(--font-pixel);
-    font-size: 9px;
-    line-height: 1.5;
-    background: var(--yellow);
-    color: var(--navy);
-    border: 3px solid var(--navy);
-    padding: 6px 8px;
+.more {
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 767px) {
@@ -134,7 +129,4 @@
         font-size: 11px;
     }
 
-    .cart {
-        display: none;
-    }
 }

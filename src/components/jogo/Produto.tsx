@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { Game } from "../../data/games";
 import type { RegisteredPlatforms } from "../../data/platforms";
@@ -20,8 +20,11 @@ import {
 import shared from "../home/shared.module.css";
 import base from "../detalhe/detalhe.module.css";
 import { Stars } from "./Stars";
+import { trailerOf, youtubeThumb } from "./youtube";
 import type { summarize } from "./review";
 import styles from "./Produto.module.css";
+
+type GalleryItem = { kind: "trailer"; id: string; url: string } | { kind: "image"; src: string; n: number };
 
 type Props = {
     game: Game;
@@ -31,8 +34,22 @@ type Props = {
 };
 
 export function Produto({ game, platform, onPlatform, summary }: Props) {
-    const images = imagesOf(game);
+    const trailer = useMemo(() => trailerOf(game.media), [game.media]);
+    const items = useMemo<GalleryItem[]>(
+        () => [
+            ...(trailer ? [{ kind: "trailer" as const, ...trailer }] : []),
+            ...imagesOf(game).map((src, i) => ({ kind: "image" as const, src, n: i + 1 })),
+        ],
+        [game, trailer],
+    );
     const [shot, setShot] = useState(0);
+    const [playing, setPlaying] = useState(false);
+    const current = items[Math.min(shot, items.length - 1)];
+    // Clicar na miniatura do trailer já carrega o iframe tocando; ao abrir a página só aparece a capa.
+    const select = (i: number) => {
+        setPlaying(items[i]?.kind === "trailer");
+        setShot(i);
+    };
     const director = getDirector(game.director);
     const studio = director ? studioName(director) : undefined;
     const publisher = publisherName(game);
@@ -53,29 +70,72 @@ export function Produto({ game, platform, onPlatform, summary }: Props) {
                     backTo="/jogos"
                 />
                 <div className={styles.grid}>
-                    {images.length > 0 && (
+                    {items.length > 0 && (
                         <div className={styles.gallery}>
-                            <div className={`${shared.box} ${styles.stage}`}>
-                                <img className={styles.stageImg} src={images[shot]} alt={`${game.name}, captura ${shot + 1}`} />
-                                <span className={styles.caption}>
-                                    <span className={styles.captionLong}>[CAPTURA DE TELA]</span>
-                                    <span className={styles.captionShort}>
-                                        {shot + 1}/{images.length}
-                                    </span>
-                                </span>
+                            <div className={`${shared.box} ${styles.stage} ${trailer ? styles.stageWide : ""}`}>
+                                {current.kind === "trailer" ? (
+                                    playing ? (
+                                        <iframe
+                                            className={styles.stageFrame}
+                                            src={`https://www.youtube-nocookie.com/embed/${current.id}?rel=0&modestbranding=1&playsinline=1&autoplay=1`}
+                                            title={`Trailer de ${game.name}`}
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowFullScreen
+                                            referrerPolicy="strict-origin-when-cross-origin"
+                                        />
+                                    ) : (
+                                        <>
+                                            <img className={styles.stageImg} src={youtubeThumb(current.id)} alt="" />
+                                            <button
+                                                type="button"
+                                                className={styles.bigPlay}
+                                                onClick={() => setPlaying(true)}
+                                                aria-label={`Assistir ao trailer de ${game.name}`}
+                                            >
+                                                <span className={styles.bigIcon} aria-hidden="true">
+                                                    <svg viewBox="0 0 16 16" shapeRendering="crispEdges">
+                                                        <path d="M4 2h2v2h2v2h2v2h2v2h-2v2H8v2H6v2H4z" fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                                <span className={styles.bigText}>Assistir ao trailer</span>
+                                            </button>
+                                        </>
+                                    )
+                                ) : (
+                                    <>
+                                        <img className={styles.stageImg} src={current.src} alt={`${game.name}, captura ${current.n}`} />
+                                        <span className={styles.caption}>
+                                            <span className={styles.captionLong}>[CAPTURA DE TELA]</span>
+                                            <span className={styles.captionShort}>
+                                                {shot + 1}/{items.length}
+                                            </span>
+                                        </span>
+                                    </>
+                                )}
                             </div>
-                            {images.length > 1 && (
-                                <div role="group" aria-label="Fotos do jogo" className={styles.thumbs}>
-                                    {images.map((src, i) => (
+                            {items.length > 1 && (
+                                <div role="group" aria-label="Mídias do jogo" className={styles.thumbs}>
+                                    {items.map((item, i) => (
                                         <button
-                                            key={src}
+                                            key={item.kind === "trailer" ? item.id : item.src}
                                             type="button"
-                                            aria-label={`Captura ${i + 1}`}
+                                            aria-label={item.kind === "trailer" ? "Trailer" : `Captura ${item.n}`}
                                             aria-pressed={i === shot}
-                                            onClick={() => setShot(i)}
+                                            onClick={() => select(i)}
                                             className={`${styles.thumb} ${i === shot ? styles.thumbOn : ""}`}
                                         >
-                                            <img src={src} alt="" loading="lazy" />
+                                            <img
+                                                src={item.kind === "trailer" ? youtubeThumb(item.id) : item.src}
+                                                alt=""
+                                                loading="lazy"
+                                            />
+                                            {item.kind === "trailer" && (
+                                                <span className={styles.playBadge} aria-hidden="true">
+                                                    <svg viewBox="0 0 16 16" shapeRendering="crispEdges">
+                                                        <path d="M4 2h2v2h2v2h2v2h2v2h-2v2H8v2H6v2H4z" fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                            )}
                                         </button>
                                     ))}
                                 </div>

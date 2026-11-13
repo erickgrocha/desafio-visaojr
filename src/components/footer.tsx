@@ -39,8 +39,7 @@ export function Footer() {
             <div className="footer-wrap footer-grid">
                 <div className="footer-brand">
                     <div className="footer-logo">
-                        <img src="/img/icons/Logo.png" alt="" />
-                        <span>MAYK<br />GAMES</span>
+                        <img src="/img/logo-mayk-games.png" alt="Mayk Games" width="640" height="377" />
                     </div>
                     <p className="footer-desc">
                         A loja de quem vive games: consoles, PCs e jogos com atendimento de player para player.

@@ -25,31 +25,6 @@
     opacity: 0.8;
 }
 
-.viewport {
-    position: relative;
-    overflow: hidden;
-}
-
-.track {
-    display: flex;
-    transition: transform 0.45s steps(8);
-}
-
-.slide {
-    flex: 0 0 100%;
-    min-width: 0;
-}
-
-.slideOn {
-    visibility: visible;
-    transition: visibility 0s;
-}
-
-.slideOff {
-    visibility: hidden;
-    transition: visibility 0s linear 0.45s;
-}
-
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr));
@@ -182,18 +157,15 @@
     color: var(--red);
 }
 
-.cardBtns {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+.cardLink {
+    color: inherit;
+    text-decoration: none;
 }
 
-.cardBtn {
-    min-width: 0;
+.cardLink:focus-visible {
+    outline: 3px solid var(--link);
+    outline-offset: 4px;
 }
-
-.long { display: inline; }
-.short { display: none; }
 
 .tag {
     position: absolute;
@@ -335,18 +307,6 @@
     .priceNow {
         font-size: 16px;
     }
-
-    .cardBtns {
-        gap: 10px;
-    }
-
-    .cardBtn {
-        padding: 0 8px;
-        font-size: 9px;
-    }
-
-    .long { display: none; }
-    .short { display: inline; }
 
     .tag {
         top: -16px;

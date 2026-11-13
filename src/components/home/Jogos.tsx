@@ -5,7 +5,7 @@ import { formatPrice, platformFilters, pricedGames, type PlatformFilter } from "
 import shared from "./shared.module.css";
 import styles from "./Jogos.module.css";
 
-const MAX_CARDS = 12;
+const MAX_CARDS = 6;
 
 export function Jogos() {
     const [filter, setFilter] = useState<PlatformFilter>("all");
@@ -53,11 +53,16 @@ export function Jogos() {
                                 <span className={styles.plat}>{g.platformLabel}</span>
                                 <div className={styles.foot}>
                                     <span className={styles.price}>{formatPrice(g.price)}</span>
-                                    <span className={styles.cart}>+ CARRINHO</span>
                                 </div>
                             </div>
                         </Link>
                     ))}
+                </div>
+
+                <div className={styles.more}>
+                    <Button variant="secondary" to="/jogos">
+                        Ver mais
+                    </Button>
                 </div>
             </div>
         </section>
