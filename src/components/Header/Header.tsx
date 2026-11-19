@@ -51,6 +51,16 @@ function MoonIcon() {
     );
 }
 
+// Ícone de pessoa (cabeça + ombros) no mesmo grid 10x10 dos outros ícones.
+function PersonIcon() {
+    return (
+        <PixelIcon>
+            <rect x="3" y="0" width="4" height="4" fill="currentColor" />
+            <path d="M2 5h6v1h1v4h-8v-4h1z" fill="currentColor" />
+        </PixelIcon>
+    );
+}
+
 function MenuIcon({ open }: { open: boolean }) {
     return (
         <PixelIcon>
@@ -120,6 +130,14 @@ export function Header() {
                             onClick={toggleTheme}
                         >
                             {isDark ? <SunIcon /> : <MoonIcon />}
+                        </Button>
+                        <Button
+                            variant="secondary"
+                            className={styles.iconBtn}
+                            aria-label="Conta"
+                            aria-haspopup="dialog"
+                        >
+                            <PersonIcon />
                         </Button>
                         <div className={styles.mobileOnly}>
                             <Button
