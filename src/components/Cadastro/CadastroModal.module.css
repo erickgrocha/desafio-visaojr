@@ -1,0 +1,124 @@
+/* padding 0 no <dialog>: o conteúdo ocupa tudo, então um clique com
+   target === dialog só acontece no fundo (::backdrop). */
+.dialog {
+    width: min(480px, calc(100% - 32px));
+    max-height: calc(100% - 32px);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    border: 4px solid var(--line);
+    box-shadow: 8px 8px 0 var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-body);
+}
+
+.dialog::backdrop {
+    background: rgba(11, 13, 46, 0.7);
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 24px;
+}
+
+.topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.titulo {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.fechar {
+    width: 44px;
+    padding: 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.label {
+    font-size: 16px;
+}
+
+/* mesmo padrão dos campos de Avaliacoes/Header */
+.field {
+    height: 48px;
+    width: 100%;
+    padding: 0 12px;
+    border: 4px solid var(--line);
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 18px;
+}
+
+.field[aria-invalid="true"] {
+    border-color: var(--red);
+}
+
+.field:disabled {
+    opacity: 0.6;
+}
+
+.dica {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* fundo vermelho + texto branco: contraste ok nos dois temas */
+.erro {
+    align-self: flex-start;
+    padding: 2px 8px;
+    background: var(--red);
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.mostrar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.mostrar input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--yellow);
+}
+
+.sucesso {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+@media (max-width: 640px) {
+    .conteudo {
+        padding: 18px;
+    }
+
+    .titulo {
+        font-size: 12px;
+    }
+}
