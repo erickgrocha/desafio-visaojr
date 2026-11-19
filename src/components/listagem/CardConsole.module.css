@@ -1,4 +1,5 @@
 .card {
+    position: relative; /* referência para o ::after do link */
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -7,6 +8,33 @@
 
 .card:hover {
     color: var(--ink);
+}
+
+/* Link do nome: mesma aparência do texto de antes; o ::after cobre o card todo */
+.link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: inherit;
+}
+
+.link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+/* O contorno de foco aparece em volta do card, como quando o card era o link */
+.link:focus-visible {
+    outline: none;
+}
+
+.link:focus-visible::after {
+    outline: 3px dashed var(--yellow);
+    outline-offset: 3px;
 }
 
 .cover {

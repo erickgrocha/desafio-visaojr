@@ -37,6 +37,7 @@ export type PricedGame = {
     price: number; // melhor preço final em reais
     oldPrice: number | null;
     discount: number;
+    offer: Offer; // a oferta mostrada no card (é ela que vai para o carrinho)
 };
 
 function finalPrice(offer: Offer): number {
@@ -57,6 +58,7 @@ export const pricedGames: PricedGame[] = Object.values(games)
             price: finalPrice(best),
             oldPrice: best.discount > 0 ? best.base_price / 100 : null,
             discount: best.discount,
+            offer: best,
         };
     })
     .filter((g): g is PricedGame => g !== null);

@@ -1,17 +1,23 @@
 import { Link } from "react-router-dom";
 import type { Console } from "../../data/consoles";
+import { BotaoAdicionar } from "../Carrinho/BotaoAdicionar";
+import { idDoConsole } from "../Carrinho/catalogo";
 import { formatPrice } from "../home/homeData";
 import shared from "../home/shared.module.css";
 import styles from "./CardConsole.module.css";
 
 export function CardConsole({ item }: { item: Console }) {
+    // O card não é mais um <Link> inteiro (um botão dentro de um link é HTML inválido).
+    // Só o nome é link, e o ::after dele cobre o card: o card todo continua clicável.
     return (
-        <Link to={`/consoles/${item.slug}`} className={`${shared.box} ${shared.lift} ${styles.card}`}>
+        <article className={`${shared.box} ${shared.lift} ${styles.card}`}>
             <div className={styles.cover}>
                 <img className={shared.coverImg} src={item.imagem} alt={item.nome} loading="lazy" />
             </div>
             <div className={styles.body}>
-                <span className={styles.name}>{item.nome}</span>
+                <Link to={`/consoles/${item.slug}`} className={`${styles.name} ${styles.link}`}>
+                    {item.nome}
+                </Link>
                 <span className={styles.desc}>
                     {item.fabricante} · {item.tipo} · {item.geracao}
                 </span>
@@ -19,7 +25,8 @@ export function CardConsole({ item }: { item: Console }) {
                     <span className={styles.price}>{formatPrice(item.valor)}</span>
                     <span className={styles.go}>VER CONSOLE ▸</span>
                 </div>
+                <BotaoAdicionar id={idDoConsole(item)} nome={item.nome} />
             </div>
-        </Link>
+        </article>
     );
 }
