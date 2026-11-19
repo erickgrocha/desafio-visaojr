@@ -79,6 +79,42 @@ export function validarCadastro(dados: DadosCadastro): ErrosCadastro {
     return erros;
 }
 
+// ---------- Login ----------
+
+export type DadosLogin = {
+    email: string;
+    senha: string;
+};
+
+export type ErrosLogin = Partial<Record<keyof DadosLogin, string>>;
+
+/** No login só conferimos o formato do e-mail e se a senha foi preenchida (sem tamanho mínimo). */
+export function validarLogin(dados: DadosLogin): ErrosLogin {
+    const erros: ErrosLogin = {};
+
+    if (!EMAIL_REGEX.test(dados.email.trim())) {
+        erros.email = "Informe um e-mail válido.";
+    }
+    if (dados.senha === "") {
+        erros.senha = "Informe sua senha.";
+    }
+
+    return erros;
+}
+
+/**
+ * Ponto único de envio do login.
+ * Por enquanto só simula sucesso depois de ~500 ms.
+ * A chamada ao servidor (POST /api/login) entra aqui depois, sem precisar
+ * mexer no modal. Nunca registrar a senha em log.
+ */
+export async function enviarLogin(dados: DadosLogin): Promise<void> {
+    void dados; // ainda sem servidor: os dados serão o corpo da requisição
+    await new Promise((resolve) => setTimeout(resolve, 500));
+}
+
+// ---------- Envio do cadastro ----------
+
 /**
  * Ponto único de envio do cadastro.
  * Por enquanto só simula sucesso depois de ~500 ms.
