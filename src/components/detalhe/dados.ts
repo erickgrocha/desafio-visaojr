@@ -90,6 +90,7 @@ export type GameListItem = {
     price: number;
     oldPrice: number | null;
     discount: number;
+    offer: Offer; // a oferta mostrada no card (é ela que vai para o carrinho)
 };
 
 /** Item de lista para um jogo; só existe se houver oferta (na plataforma, quando informada). */
@@ -103,6 +104,7 @@ export function listItem(game: Game, platform?: RegisteredPlatforms): GameListIt
         price: finalPrice(best),
         oldPrice: best.discount > 0 ? best.base_price / 100 : null,
         discount: best.discount,
+        offer: best,
     };
 }
 

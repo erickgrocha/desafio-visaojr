@@ -1,0 +1,19 @@
+/* Acima do ::after do link do card (z-index 1), para receber o clique sozinho. */
+.acao {
+    position: relative;
+    z-index: 2;
+    margin-top: 10px;
+}
+
+/* Cards ficam em 2 colunas no celular: botão mais compacto */
+@media (max-width: 767px) {
+    .acao {
+        margin-top: 6px;
+    }
+
+    .acao button {
+        gap: 6px;
+        padding: 0 8px;
+        font-size: 9px;
+    }
+}
