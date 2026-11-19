@@ -122,3 +122,28 @@
         font-size: 12px;
     }
 }
+
+/* "Não tem conta? Criar conta": botão com cara de link (mesmas cores do <a> global) */
+.alternar {
+    font-size: 16px;
+    text-align: center;
+}
+
+.linkBtn {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--link);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.linkBtn:hover {
+    color: var(--ink);
+}
+
+.linkBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
