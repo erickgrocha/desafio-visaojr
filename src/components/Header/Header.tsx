@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import { Button } from "../Button/Button";
+import { CadastroModal } from "../Cadastro/CadastroModal";
 import styles from "./Header.module.css";
 
 type NavItem = { label: string; to: string; end?: boolean };
@@ -96,6 +97,7 @@ function SearchField() {
 
 export function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [cadastroOpen, setCadastroOpen] = useState(false);
     const closeMenu = () => setMenuOpen(false);
     const { isDark, toggleTheme } = useTheme();
     const { pathname } = useLocation();
@@ -136,6 +138,7 @@ export function Header() {
                             className={styles.iconBtn}
                             aria-label="Conta"
                             aria-haspopup="dialog"
+                            onClick={() => setCadastroOpen(true)}
                         >
                             <PersonIcon />
                         </Button>
@@ -168,6 +171,8 @@ export function Header() {
                     </nav>
                 )}
             </header>
+
+            <CadastroModal open={cadastroOpen} onClose={() => setCadastroOpen(false)} />
 
             {isHome && (
                 <div className={`${styles.band} ${styles.mobileOnly}`}>
