@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import { Button } from "../Button/Button";
+import { ContaModal } from "../Cadastro/ContaModal";
 import styles from "./Header.module.css";
 
 type NavItem = { label: string; to: string; end?: boolean };
@@ -51,6 +52,16 @@ function MoonIcon() {
     );
 }
 
+// Ícone de pessoa (cabeça + ombros) no mesmo grid 10x10 dos outros ícones.
+function PersonIcon() {
+    return (
+        <PixelIcon>
+            <rect x="3" y="0" width="4" height="4" fill="currentColor" />
+            <path d="M2 5h6v1h1v4h-8v-4h1z" fill="currentColor" />
+        </PixelIcon>
+    );
+}
+
 function MenuIcon({ open }: { open: boolean }) {
     return (
         <PixelIcon>
@@ -86,6 +97,7 @@ function SearchField() {
 
 export function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [cadastroOpen, setCadastroOpen] = useState(false);
     const closeMenu = () => setMenuOpen(false);
     const { isDark, toggleTheme } = useTheme();
     const { pathname } = useLocation();
@@ -121,6 +133,15 @@ export function Header() {
                         >
                             {isDark ? <SunIcon /> : <MoonIcon />}
                         </Button>
+                        <Button
+                            variant="secondary"
+                            className={styles.iconBtn}
+                            aria-label="Conta"
+                            aria-haspopup="dialog"
+                            onClick={() => setCadastroOpen(true)}
+                        >
+                            <PersonIcon />
+                        </Button>
                         <div className={styles.mobileOnly}>
                             <Button
                                 variant="secondary"
@@ -150,6 +171,8 @@ export function Header() {
                     </nav>
                 )}
             </header>
+
+            <ContaModal open={cadastroOpen} onClose={() => setCadastroOpen(false)} />
 
             {isHome && (
                 <div className={`${styles.band} ${styles.mobileOnly}`}>
