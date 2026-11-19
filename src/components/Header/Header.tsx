@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import { Button } from "../Button/Button";
 import { ContaModal } from "../Cadastro/ContaModal";
+import { CarrinhoDrawer } from "../Carrinho/CarrinhoDrawer";
 import { IconeCarrinho } from "../Carrinho/IconeCarrinho";
 import { useCarrinho } from "../Carrinho/useCarrinho";
 import styles from "./Header.module.css";
@@ -100,6 +101,7 @@ function SearchField() {
 export function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [cadastroOpen, setCadastroOpen] = useState(false);
+    const [carrinhoOpen, setCarrinhoOpen] = useState(false);
     const closeMenu = () => setMenuOpen(false);
     const { isDark, toggleTheme } = useTheme();
     const { pathname } = useLocation();
@@ -152,6 +154,7 @@ export function Header() {
                             className={`${styles.iconBtn} ${styles.cartBtn}`}
                             aria-label={carrinhoLabel}
                             aria-haspopup="dialog"
+                            onClick={() => setCarrinhoOpen(true)}
                         >
                             <IconeCarrinho />
                             {/* contador visual; o número já está no aria-label */}
@@ -192,6 +195,7 @@ export function Header() {
             </header>
 
             <ContaModal open={cadastroOpen} onClose={() => setCadastroOpen(false)} />
+            <CarrinhoDrawer open={carrinhoOpen} onClose={() => setCarrinhoOpen(false)} />
 
             {isHome && (
                 <div className={`${styles.band} ${styles.mobileOnly}`}>
