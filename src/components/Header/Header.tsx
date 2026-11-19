@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import { Button } from "../Button/Button";
-import { CadastroModal } from "../Cadastro/CadastroModal";
+import { ContaModal } from "../Cadastro/ContaModal";
 import styles from "./Header.module.css";
 
 type NavItem = { label: string; to: string; end?: boolean };
@@ -172,7 +172,7 @@ export function Header() {
                 )}
             </header>
 
-            <CadastroModal open={cadastroOpen} onClose={() => setCadastroOpen(false)} />
+            <ContaModal open={cadastroOpen} onClose={() => setCadastroOpen(false)} />
 
             {isHome && (
                 <div className={`${styles.band} ${styles.mobileOnly}`}>

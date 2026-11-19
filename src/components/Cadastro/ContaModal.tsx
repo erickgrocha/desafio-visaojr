@@ -9,7 +9,7 @@ import {
     validarCadastro,
 } from "./cadastro";
 import type { CampoCadastro, DadosCadastro, ErrosCadastro } from "./cadastro";
-import styles from "./CadastroModal.module.css";
+import styles from "./ContaModal.module.css";
 
 type Props = {
     open: boolean;
@@ -68,7 +68,7 @@ function CloseIcon() {
  * por cima da página, do foco preso dentro dele, do Esc e de devolver o foco
  * ao botão que abriu.
  */
-export function CadastroModal({ open, onClose }: Props) {
+export function ContaModal({ open, onClose }: Props) {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const idBase = useId();
     const [dados, setDados] = useState<DadosCadastro>(CADASTRO_VAZIO);
