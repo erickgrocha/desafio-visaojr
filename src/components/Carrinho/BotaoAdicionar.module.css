@@ -5,6 +5,13 @@
     margin-top: 10px;
 }
 
+/* Página de detalhe: o wrapper ocupa o lugar que o botão "Comprar agora" ocupava
+   na fileira de CTAs (.cta tinha flex: 1 1 200px). Sem as regras compactas abaixo. */
+.destaque {
+    flex: 1 1 200px;
+    display: flex;
+}
+
 /* Cards ficam em 2 colunas no celular: botão mais compacto */
 @media (max-width: 767px) {
     .acao {
