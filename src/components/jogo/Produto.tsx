@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import type { Game } from "../../data/games";
 import type { RegisteredPlatforms } from "../../data/platforms";
 import { Button } from "../Button/Button";
+import { BotaoAdicionar } from "../Carrinho/BotaoAdicionar";
+import { idDoJogo } from "../Carrinho/catalogo";
 import { Crumbs } from "../detalhe/Crumbs";
 import {
     WHATSAPP_URL,
@@ -13,7 +15,6 @@ import {
     imagesOf,
     platformName,
     publisherName,
-    storeName,
     studioName,
     offersOfGame,
 } from "../detalhe/dados";
@@ -55,8 +56,8 @@ export function Produto({ game, platform, onPlatform, summary }: Props) {
     const publisher = publisherName(game);
 
     const available = game.platforms.filter((p) => offersOfGame(game.slug).some((o) => o.platform === p));
+    // Melhor oferta da plataforma escolhida: é o preço mostrado e o que vai para o carrinho.
     const offer = platform ? bestOffer(game.slug, platform) : undefined;
-    const store = offer ? storeName(offer.store) : undefined;
 
     const byline = [studio, publisher].filter(Boolean).join(" · ");
 
@@ -193,17 +194,20 @@ export function Produto({ game, platform, onPlatform, summary }: Props) {
                             <div className={`${shared.box} ${base.priceBox}`}>
                                 {offer.discount > 0 && <span className={base.old}>{formatPrice(offer.base_price / 100)}</span>}
                                 <span className={base.priceNow}>{formatPrice(finalPrice(offer))}</span>
-                                <span className={base.muted}>
-                                    {[store, platform && platformName(platform)].filter(Boolean).join(" · ")}
-                                </span>
+                                {/* Só a plataforma: a loja de origem não aparece, a compra é na Mayk Games */}
+                                {platform && <span className={base.muted}>{platformName(platform)}</span>}
                             </div>
                         )}
 
                         {offer && (
                             <div className={styles.ctas}>
-                                <Button variant="primary" href={WHATSAPP_URL} target="_blank" rel="noreferrer" className={base.cta}>
-                                    Comprar agora
-                                </Button>
+                                {/* Antes era "Comprar agora" (WhatsApp); agora a oferta mostrada vai para o carrinho */}
+                                <BotaoAdicionar
+                                    id={idDoJogo(offer)}
+                                    nome={game.name}
+                                    variante="destaque"
+                                    className={base.cta}
+                                />
                             </div>
                         )}
                         <Button

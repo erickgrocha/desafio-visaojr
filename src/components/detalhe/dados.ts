@@ -3,7 +3,6 @@ import { games, type Game } from "../../data/games";
 import { offers, type Offer } from "../../data/offers";
 import { platforms, type RegisteredPlatforms } from "../../data/platforms";
 import { publishers } from "../../data/publishers";
-import { stores } from "../../data/stores";
 import { studios } from "../../data/studios";
 import { consoles, type Console } from "../../data/consoles";
 
@@ -54,10 +53,6 @@ export function studioName(director: Director): string | undefined {
 
 export function publisherName(game: Game): string | undefined {
     return (publishers as Record<string, { name: string }>)[game.publisher]?.name;
-}
-
-export function storeName(slug: string): string | undefined {
-    return (stores as Record<string, { name: string }>)[slug]?.name;
 }
 
 export function platformName(slug: RegisteredPlatforms): string {
