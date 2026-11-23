@@ -1,8 +1,9 @@
 import { useState } from "react";
 import type { Console } from "../../data/consoles";
-import { Button } from "../Button/Button";
+import { BotaoAdicionar } from "../Carrinho/BotaoAdicionar";
+import { idDoConsole } from "../Carrinho/catalogo";
 import { Crumbs } from "../detalhe/Crumbs";
-import { WHATSAPP_URL, formatPrice } from "../detalhe/dados";
+import { formatPrice } from "../detalhe/dados";
 import shared from "../home/shared.module.css";
 import base from "../detalhe/detalhe.module.css";
 import styles from "./Produto.module.css";
@@ -39,9 +40,8 @@ export function Produto({ console: c }: { console: Console }) {
                             <span className={base.priceNow}>{formatPrice(c.valor)}</span>
                         </div>
                         <div className={styles.ctas}>
-                            <Button variant="primary" href={WHATSAPP_URL} target="_blank" rel="noreferrer" className={base.cta}>
-                                Comprar agora
-                            </Button>
+                            {/* Antes era "Comprar agora" (WhatsApp); agora o produto vai para o carrinho */}
+                            <BotaoAdicionar id={idDoConsole(c)} nome={c.nome} variante="destaque" className={base.cta} />
                         </div>
                     </div>
                 </div>
